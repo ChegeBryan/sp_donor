@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sp_donor/models/user.dart';
 import 'package:sp_donor/services/auth.dart';
+import 'package:sp_donor/services/profile.dart';
 import 'package:sp_donor/services/user.dart';
 import 'package:sp_donor/util/shared_preferences.dart';
 import 'package:sp_donor/views/auth/screens/login.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => AuthProvider()),
         ChangeNotifierProvider(create: (context) => UserProvider()),
+        ChangeNotifierProvider(create: (context) => ProfileProvider())
       ],
       child: MaterialApp(
         title: 'Sp Donor',
