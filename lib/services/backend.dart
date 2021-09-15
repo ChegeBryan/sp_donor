@@ -10,4 +10,5 @@ class BackendUrl {
   static const String getProfile = baseUrl + '/donor/getProfile.php';
   static const String createProfile = baseUrl + '/donor/addProfile.php';
   static const String updateProfile = baseUrl + '/donor/updateProfile.php';
+  static const String deleteProfile = baseUrl + '/donor/deleteProfile.php';
 }

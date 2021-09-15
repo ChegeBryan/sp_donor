@@ -22,11 +22,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ProfileProvider profile = Provider.of<ProfileProvider>(context);
+    ProfileProvider manageProfile = Provider.of<ProfileProvider>(context);
     User user = Provider.of<UserProvider>(context).user;
 
     return FutureBuilder(
-      future: profile.getProfile(user.id!),
+      future: manageProfile.getProfile(user.id!),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.data!['status'] && snapshot.data!['data'].isEmpty) {
@@ -95,6 +95,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: Text('Profile'),
               centerTitle: true,
               actions: [
+                IconButton(
+                  onPressed: () {
+                    final Future<Map<String, dynamic>> deleteProfile =
+                        manageProfile.deleteProfile(profile['id']);
+
+                    deleteProfile.then(
+                      (response) {
+                        if (response['status']) {
+                          Navigator.pushReplacementNamed(context, '/profile');
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(response['message']),
+                              duration: const Duration(seconds: 2),
+                              backgroundColor: Colors.redAccent,
+                            ),
+                          );
+                        }
+                      },
+                    );
+                  },
+                  icon: Icon(Icons.delete),
+                ),
                 IconButton(
                     onPressed: () {
                       // clear user data from local storage

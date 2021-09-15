@@ -119,4 +119,21 @@ class ProfileProvider with ChangeNotifier {
     }
     return result;
   }
+
+  Future<Map<String, dynamic>> deleteProfile(int id) async {
+    var result;
+
+    final Map<String, dynamic> data = {'id': id.toString()};
+
+    Response res = await post(Uri.parse(BackendUrl.deleteProfile), body: data);
+
+    final Map<String, dynamic> responseData = jsonDecode(res.body);
+
+    if (!responseData['error']) {
+      result = {'status': true, 'message': 'Delete successful'};
+    } else {
+      result = {'status': false, 'message': 'Delete failed.'};
+    }
+    return result;
+  }
 }
