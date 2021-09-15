@@ -7,6 +7,8 @@ import 'package:sp_donor/services/user.dart';
 import 'package:sp_donor/util/shared_preferences.dart';
 import 'package:sp_donor/views/auth/screens/login.dart';
 import 'package:sp_donor/views/auth/screens/register.dart';
+import 'package:sp_donor/views/screens/create_profile_screen.dart';
+import 'package:sp_donor/views/screens/edit_profile_screen.dart';
 import 'package:sp_donor/views/screens/profile_screen.dart';
 
 void main() {
@@ -46,6 +48,8 @@ class MyApp extends StatelessWidget {
           '/login': (context) => LoginScreen(),
           '/register': (context) => RegisterScreen(),
           '/profile': (context) => ProfileScreen(),
+          '/editProfile': (context) => EditProfileScreen(),
+          '/createProfile': (context) => CreateProfileScreen(),
         },
       ),
     );

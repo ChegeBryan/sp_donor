@@ -13,6 +13,13 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  Widget _calculateAge(String birthDate) {
+    DateTime dob = DateTime.parse(birthDate);
+    Duration dur = DateTime.now().difference(dob);
+    String differenceInYears = (dur.inDays / 365).floor().toString();
+    return Text(differenceInYears + ' years');
+  }
+
   @override
   Widget build(BuildContext context) {
     ProfileProvider profile = Provider.of<ProfileProvider>(context);
@@ -46,7 +53,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Text('No profile found.'),
               ),
               floatingActionButton: FloatingActionButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/createProfile',
+                  );
+                },
                 child: Icon(Icons.add),
               ),
             );
@@ -118,7 +130,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ListTile(
                     leading: Icon(Icons.event),
                     title: Text('Age'),
-                    subtitle: Text(profile['birth_date'].toString()),
+                    subtitle: _calculateAge(profile['birth_date']),
                   ),
                   ListTile(
                     leading: Icon(Icons.group),
