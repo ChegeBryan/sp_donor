@@ -121,6 +121,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     subtitle: Text(profile['birth_date'].toString()),
                   ),
                   ListTile(
+                    leading: Icon(Icons.group),
+                    title: Text('Ethnicity'),
+                    subtitle: Text(profile['ethnicity']),
+                  ),
+                  ListTile(
                     leading: Icon(Icons.visibility),
                     title: Text('Eye color'),
                     subtitle: Text(profile['eye_color']),
@@ -159,7 +164,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             floatingActionButton: FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/editProfile',
+                    arguments: profile);
+              },
               child: Icon(Icons.edit),
             ),
           );
